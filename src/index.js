@@ -1,8 +1,9 @@
-const prompt = require('prompt-sync')();
 
+const prompt = require('prompt-sync')();
 
 function carrinho() {
     let produtos = []; // Array para armazenar os produtos no carrinho
+    let totalSubtotais = 0; // Variável para armazenar o total dos subtotais
 
     while (true) {
         let nomeProduto = prompt("Adicione um produto ao carrinho (ou digite 'fim' para encerrar):");
@@ -23,12 +24,17 @@ function carrinho() {
         });
     }
 
-    // Imprime os produtos no carrinho
+    // Imprime os produtos no carrinho e calcula o total dos subtotais
     console.log("Produtos no carrinho:");
     produtos.forEach(produto => {
         console.log(produto.nome + " - R$ " + produto.preco + " - Quantidade: " + produto.quantidade);
-        console.log("Subtotal: R$ " + produto.preco * produto.quantidade);
+        let subtotal = produto.preco * produto.quantidade;
+        console.log("Subtotal: R$ " + subtotal);
+        totalSubtotais += subtotal; // Atualiza o total dos subtotais
     });
+
+    // Imprime o total dos subtotais
+    console.log("Total dos subtotais: R$ " + totalSubtotais);
 }
 
 carrinho();
